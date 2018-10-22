@@ -15,10 +15,11 @@
                             {{ $post->title }}
                         </a>
                 </h2>
-                <p>{{ $post->body }}</p>    
+                  <p>{{ $post->created_at }}</p>
+                <p>{{ $post->body }}</p>
             </div>
         </li>
         @endforeach
-    
+
     </ul>
 @endsection
