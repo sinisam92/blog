@@ -11,8 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'PostsController@index');
+
+
+Route::prefix('posts')->group(function () {
+    Route::get('/create', 'PostsController@create');
+    Route::post('/', 'PostsController@store');
+    Route::get('/{id}', 'PostsController@show');
+    Route::get('/', 'PostsController@index');
+    
 });
-Route::get('/posts', 'PostsController@index');
-Route::get('/posts{id}', 'PostsController@get');
+
