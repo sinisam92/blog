@@ -15,7 +15,8 @@ class PostsController extends Controller
     }
     public function show($id)
     {
-        $post = Post::findOrFail($id);
+        //lazy loging $post = Post::findOrFail($id); ako je sajt posecen
+        $post = Post::with('comments')->findOrFail($id);
 
         return view('posts.show', ['post' => $post]);
     }
