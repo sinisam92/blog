@@ -28,6 +28,22 @@
             </ul>
 
         @endif
+        <h4>Comment on this topic?</h4>
+        <form method="POST" action="/posts/{{ $post->id }}/comments">
+
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label>Author</label>
+                <input type="text" class="form-control" id="author" name="author" placeholder="Enter name">
+                @include('layouts.partials.error-message', ['field' => 'author'])
+            </div>
+            <div class="form-group">
+                    <label>Comment</label> 
+                    <textarea type="textarea" class="form-control" id="text" name="text" placeholder="Enter comment"></textarea>
+                    @include('layouts.partials.error-message', ['field' => 'text'])
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 
 @endsection

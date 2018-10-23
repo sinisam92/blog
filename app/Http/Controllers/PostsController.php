@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Comment;
 
 class PostsController extends Controller
 {
@@ -28,11 +29,8 @@ class PostsController extends Controller
     {
         $this->validate(
             request(),
-            [
-                'title' => 'required',
-                'body' => 'required | min:25',
-                'published' => 'required'
-            ]);
+            Post::VALIDATION_RULES
+            );
         
         Post::create(request()->all());
 
