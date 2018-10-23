@@ -8,9 +8,9 @@ use App\Comment;
 
 class CommentsController extends Controller
 {
-    public function store($id)
+    public function store($postId)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::findOrFail($postId);
 
         $this->validate(
             request(),
@@ -21,8 +21,15 @@ class CommentsController extends Controller
             request()->all()
         );
 
-        //return redirect('/posts/' . $id);
+        //return redirect('/posts/' . $postId);
         
-        return redirect("/posts/{$id}");
+        return redirect("/posts/{$postId}");
+    }
+    public function destroy($postId, $commentId)
+    {
+        $comment = Comment::findOrFail($commentId);
+        $comment->delete();
+
+        return redirect("/posts/{$postId}");
     }
 }
