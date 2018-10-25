@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
+    public function __construct() 
+    {
+        //proverava da li je korisnik gost primenjuje na sve osim na logout
+        $this->middleware('guest', ['except' => 'logout']);
+    }
     public function index()
     {
     

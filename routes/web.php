@@ -16,7 +16,7 @@ Route::get('/logout', 'LoginController@logout');
 
 Route::prefix('login')->group(function () {
         
-    Route::get('/', 'LoginController@index');
+    Route::get('/', 'LoginController@index')->name('login');
     Route::post('/', 'LoginController@login');
 });
 
@@ -29,8 +29,8 @@ Route::prefix('register')->group(function () {
 });
 
 
-Route::prefix('posts')->group(function () {
-    Route::get('/create', 'PostsController@create');
+Route::group(['prefix' => 'posts', 'middleware' => ['auth']],function () {
+    Route::get('/create', 'PostsController@create')->middleware('auth');
     Route::post('/', 'PostsController@store');
     Route::get('/{id}', 'PostsController@show');
     Route::get('/', 'PostsController@index');
