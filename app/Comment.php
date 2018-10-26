@@ -17,7 +17,7 @@ class Comment extends Model
 
    public function post()
    {
-       return $this->bilongsTo(Post::class);
+       return $this->belongsTo(Post::class);
    }
 
 

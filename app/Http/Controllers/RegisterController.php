@@ -31,6 +31,8 @@ class RegisterController extends Controller
 
             
         // $user = User::create(request()->all());
+
+        //helper funckcija za login usera
         auth()->login($user);
 
         return redirect('/posts');

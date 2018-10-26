@@ -31,8 +31,15 @@ class PostsController extends Controller
             request(),
             Post::VALIDATION_RULES
             );
-        
-        Post::create(request()->all());
+
+         
+        //merguje sve postove sa aurtorima
+        Post::create(
+            array_merge(request()->all(),
+            [
+                'author_id' => auth()->user()->id
+            ]
+         ));
 
         return redirect('/');
 
