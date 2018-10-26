@@ -20,7 +20,7 @@ class Post extends Model
     {
         return Post::where('published', true)->get();
     }
-    public function user()
+    public function author()
     {
         //dodajemo 'author_id' da laravel zna sa kojom kolonom da poveze u bazi
         return $this->belongsTo(User::class, 'author_id');

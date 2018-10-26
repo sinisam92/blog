@@ -15,6 +15,7 @@
                             {{ $post->title }}
                         </a>
                 </h2>
+                  <p>Napisao: {{$post->author->name}}</p>
                   <p>{{ $post->created_at }}</p>
                 <p>{{ $post->body }}</p>
             </div>
