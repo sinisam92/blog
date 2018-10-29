@@ -10,6 +10,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('age', ['only' => 'store']);
     }
     public function create()
     {
@@ -34,6 +35,8 @@ class RegisterController extends Controller
 
         //helper funckcija za login usera
         auth()->login($user);
+        // poruka o registraciji
+        session()->flash('message', 'Hvala sto ste se registroavali!');
 
         return redirect('/posts');
       

@@ -16,8 +16,13 @@
         </div>
         <div class="form-group">
             <label>Email</label>
-            <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
+            <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email">
             @include('layouts.partials.error-message', ['field' => 'email'])
+        </div>
+        <div class="form-group">
+                <label>Age</label>
+                <input type="text" class="form-control" id="age" name="age" placeholder="Enter Age">
+                
         </div>
         <div class="form-group">
             <label>Password</label>
