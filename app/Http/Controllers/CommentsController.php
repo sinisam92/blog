@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\CommentReceived;
 use App\Post;
 use App\Comment;
+use Illuminate\Support\Facades\Mail;
 
 class CommentsController extends Controller
 {
@@ -20,6 +22,8 @@ class CommentsController extends Controller
         $post->comments()->create(
             request()->all()
         );
+
+        Mail::to($post->author)->send(new CommentReceived($post));
 
         //return redirect('/posts/' . $postId);
         

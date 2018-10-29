@@ -40,9 +40,8 @@ Route::group(['prefix' => 'posts', 'middleware' => ['auth']],function () {
         Route::post('/', 'CommentsController@store');
         Route::post('/{commentId}', 'CommentsController@destroy');
 
-    });
-
-   
-    
+    });  
 });
+
+Route::get('/users/{id}', 'UsersController@show');
 
