@@ -15,6 +15,7 @@
                             {{ $post->title }}
                         </a>
                 </h2>
+                  <p>Napisao: <a href="/users/{{ $post->author->id}}">{{$post->author->name}}</a></p>
                   <p>{{ $post->created_at }}</p>
                 <p>{{ $post->body }}</p>
             </div>

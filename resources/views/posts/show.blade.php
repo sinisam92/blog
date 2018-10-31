@@ -9,10 +9,22 @@
 @section('content')
     <h2><a href="/posts">All Posts</a></h2>
     <div class="blog-post">
+        <p>Napisao: {{$post->author->name}}</p>
         <h2 class="blog-post-title">
             {{ $post->title }}
         </h2>
+
         <p>{{ $post->created_at}}</p>
+        <p>
+            <ul>
+                @foreach($post->tags as $tag)
+                    <li>
+                    <a href="/posts/tags/{{ $tag->name }}">{{ $tag->name }}</a> 
+                    </li>  
+                @endforeach
+            </ul>
+            
+        </p>
         <p>{{ $post->body }}</p>
 
         @if(count($post->comments))

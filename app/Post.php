@@ -2,15 +2,13 @@
 
 namespace App;
 
+use App\User;
 use App\Comment; //povezivanje sa comments za komentare
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = [
-
-        'title', 'body', 'published'
-    ];
+    protected $guarded = ['id'];
 
     const VALIDATION_RULES = [
         'title' => 'required',
@@ -22,8 +20,17 @@ class Post extends Model
     {
         return Post::where('published', true)->get();
     }
+    public function author()
+    {
+        //dodajemo 'author_id' da laravel zna sa kojom kolonom da poveze u bazi
+        return $this->belongsTo(User::class, 'author_id');
+    }
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }
