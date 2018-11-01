@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Comment;
+use App\Tag;
 
 class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::getPublishedPosts();
+        $posts = Post::getPublishedPosts()->orderBy('created_at', 'desc')->paginate(10);
 
         return view('posts.index', ['posts' => $posts]); // compact(['posts'])
     }
@@ -23,7 +24,9 @@ class PostsController extends Controller
     }
     public function create()
     {
-        return view('posts.create');
+        $tags = Tag::all();
+
+        return view('posts.create')->with('tags', $tags);
     }
     public function store()
     {
@@ -34,12 +37,14 @@ class PostsController extends Controller
 
          
         //merguje sve postove sa aurtorima
-        Post::create(
-            array_merge(request()->all(),
-            [
-                'author_id' => auth()->user()->id
-            ]
-         ));
+        $post = new Post();
+        $post->title = request('title');
+        $post->body = request('body');
+        $post->author_id = auth()->user()->id;
+        $post->published = true;
+        $post->save();
+
+        $post->tags()->attach(request('tags'));
 
         return redirect('/');
 
