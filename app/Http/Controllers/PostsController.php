@@ -35,8 +35,6 @@ class PostsController extends Controller
             Post::VALIDATION_RULES
             );
 
-         
-        //merguje sve postove sa aurtorima
         $post = new Post();
         $post->title = request('title');
         $post->body = request('body');

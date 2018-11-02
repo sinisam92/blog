@@ -14,7 +14,7 @@
             @include('layouts.partials.error-message', ['field' => 'title'])
         </div>
         <div class="form-group">
-                <label>Post</label> 
+                <label>Post</label>
                 <textarea type="textarea" class="form-control" id="body" name="body" placeholder="Enter text"></textarea>
                 @include('layouts.partials.error-message', ['field' => 'body'])
         </div>
@@ -26,7 +26,8 @@
             <label>Select tags</label><br>
             @foreach($tags as $tag)
 
-                <input type="checkbox" class="form-check-input" name="tags[]" value="{{ $tag->id }}"> {{ $tag->name }} <br>
+                <input type="checkbox" class="form-check-input" name="tags[]"
+                value="{{ $tag->id }}"> {{ $tag->name }} <br>
 
             @endforeach
         </div>
