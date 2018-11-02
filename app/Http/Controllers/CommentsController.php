@@ -13,17 +13,17 @@ class CommentsController extends Controller
     public function store($postId)
     {
         $post = Post::findOrFail($postId);
-
+        
         $this->validate(
             request(),
             Comment::VALIDATION_RULES
            );
-
+          
         $post->comments()->create(
             request()->all()
         );
-
-        Mail::to($post->author)->send(new CommentReceived($post));
+        
+        Mail::to($post->author->email)->send(new CommentReceived($post));
 
         //return redirect('/posts/' . $postId);
         

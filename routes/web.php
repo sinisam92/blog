@@ -10,8 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'PostsController@index');
+Route::get('/posts', 'PostsController@index');
+// Route::get('/', 'PostsController@index');
 Route::get('/logout', 'LoginController@logout');
 
 Route::prefix('login')->group(function () {
@@ -28,7 +28,7 @@ Route::group(['prefix' => 'posts', 'middleware' => ['auth']],function () {
     Route::get('/create', 'PostsController@create')->middleware('auth');
     Route::post('/', 'PostsController@store');
     Route::get('/{id}', 'PostsController@show');
-    Route::get('/', 'PostsController@index');
+    
 
     Route::prefix('/{postId}/comments')->group(function (){
 

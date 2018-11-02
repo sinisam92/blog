@@ -4,7 +4,7 @@
         <a class="text-muted" href="/posts/create">Create Post</a>
         </div>
         <div class="col-4 text-center">
-        <a class="blog-header-logo text-dark" href="/">Posts</a>
+        <a class="blog-header-logo text-dark" href="/posts">Posts</a>
         </div>
         <div class="col-4 d-flex">
         
